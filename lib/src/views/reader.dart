@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'package:qrreader/src/providers/ui_state.dart';
 import 'package:qrreader/src/widgets/widgets.dart';
 import 'package:qrreader/src/views/views.dart';
 
@@ -18,7 +20,7 @@ class ReaderView extends StatelessWidget {
           ),
         ],
       ),
-      body: MapasPage(),
+      body: _HomeBody(),
       bottomNavigationBar: CustomNavigationBar(),
       floatingActionButton: ScanButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -29,7 +31,8 @@ class ReaderView extends StatelessWidget {
 class _HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final currentIndex = 1;
+    final uiProvider = Provider.of<UiProvider>(context);
+    final currentIndex = uiProvider.selectedMenuOpt;
 
     switch (currentIndex) {
       case 0:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
+import 'package:qrreader/src/providers/ui_state.dart';
 import 'package:qrreader/src/views/views.dart';
 
 void main() => runApp(MyApp());
@@ -17,15 +19,18 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'QR Reader App',
-      theme: theme,
-      initialRoute: 'reader',
-      routes: {
-        'reader': (_) => ReaderView(),
-        'map': (_) => MapView(),
-      },
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => UiProvider())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'QR Reader App',
+        theme: theme,
+        initialRoute: 'reader',
+        routes: {
+          'reader': (_) => ReaderView(),
+          'map': (_) => MapView(),
+        },
+      ),
     );
   }
 }
