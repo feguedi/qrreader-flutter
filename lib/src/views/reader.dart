@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:qrreader/src/providers/ui_state.dart';
+import 'package:qrreader/src/providers/providers.dart';
+import 'package:qrreader/src/models/models.dart';
 import 'package:qrreader/src/widgets/widgets.dart';
 import 'package:qrreader/src/views/views.dart';
 
@@ -33,6 +34,8 @@ class _HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UiProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
+    final ns = new ScanModel(valor: 'http://gudin.io');
+    DBProvider.db.nuevoScan(ns);
 
     switch (currentIndex) {
       case 0:
